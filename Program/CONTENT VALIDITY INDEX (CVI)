@@ -1,0 +1,34 @@
+ratings = np.array([
+    [4, 3, 4, 4, 3, 4],  # Item 1
+    [3, 3, 4, 3, 3, 4],  # Item 2
+    [4, 4, 3, 4, 4, 4],  # Item 3
+    [3, 4, 3, 3, 4, 3],  # Item 4
+    [3, 3, 3, 4, 3, 3],  # Item 5
+    [4, 4, 4, 3, 4, 4]   # Item 6
+])
+
+def compute_cvi(ratings_matrix, cutoff=3):
+    """
+    ratings_matrix: numpy array (items x experts), skala 1–4
+    cutoff: skor minimal dikategorikan 'relevan' (default 3)
+    """
+    n_items, n_experts = ratings_matrix.shape
+    i_cvi_list = []
+
+    for i in range(n_items):
+        item_scores = ratings_matrix[i, :]
+        n_relevant = np.sum(item_scores >= cutoff)
+        i_cvi = n_relevant / n_experts
+        i_cvi_list.append(i_cvi)
+
+    i_cvi_array = np.array(i_cvi_list)
+    s_cvi = np.mean(i_cvi_array)
+    return i_cvi_array, s_cvi
+
+i_cvi, s_cvi = compute_cvi(ratings)
+
+print("=== E3. Content Validity Index (CVI) ===")
+for idx, val in enumerate(i_cvi, start=1):
+    print(f"I-CVI Item {idx}: {val:.2f}")
+print(f"S-CVI (Scale-level CVI): {s_cvi:.2f}")
+print()
