@@ -1,0 +1,21 @@
+def cohens_d_paired(pre, post):
+    diff = post - pre
+    mean_diff = np.mean(diff)
+    sd_diff = np.std(diff, ddof=1)  # sampel sd
+    d = mean_diff / sd_diff
+    return d
+
+mandarin_d = cohens_d_paired(pre_mandarin, post_mandarin)
+
+print("=== E2. Effect Size (Cohen's d) – Mandarin Workplace Proficiency ===")
+print(f"Cohen's d: {mandarin_d:.2f}")
+if abs(mandarin_d) < 0.2:
+    kategori = "kecil"
+elif abs(mandarin_d) < 0.5:
+    kategori = "kecil–sedang"
+elif abs(mandarin_d) < 0.8:
+    kategori = "sedang"
+else:
+    kategori = "besar"
+print(f"Kategori Efek: {kategori}")
+print()
