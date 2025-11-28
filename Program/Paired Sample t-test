@@ -1,0 +1,19 @@
+def paired_t_test(pre, post):
+    t_stat, p_value = stats.ttest_rel(post, pre)
+    mean_pre = np.mean(pre)
+    mean_post = np.mean(post)
+    return {
+        "mean_pre": mean_pre,
+        "mean_post": mean_post,
+        "t_stat": t_stat,
+        "p_value": p_value
+    }
+
+mandarin_ttest = paired_t_test(pre_mandarin, post_mandarin)
+
+print("=== E1. Paired Sample t-test – Mandarin Workplace Proficiency ===")
+print(f"Mean Pre-test  : {mandarin_ttest['mean_pre']:.2f}")
+print(f"Mean Post-test : {mandarin_ttest['mean_post']:.2f}")
+print(f"t-value        : {mandarin_ttest['t_stat']:.2f}")
+print(f"p-value        : {mandarin_ttest['p_value']:.4f}")
+print()
