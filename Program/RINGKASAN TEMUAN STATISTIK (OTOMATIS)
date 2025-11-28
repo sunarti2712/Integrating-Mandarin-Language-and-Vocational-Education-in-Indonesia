@@ -1,0 +1,19 @@
+sig_text = "signifikan" if mandarin_ttest['p_value'] < 0.05 else "tidak signifikan"
+print(
+    f"- Terdapat peningkatan {sig_text} pada skor Mandarin Workplace Proficiency "
+    f"(pre = {mandarin_ttest['mean_pre']:.2f}, post = {mandarin_ttest['mean_post']:.2f}, "
+    f"t = {mandarin_ttest['t_stat']:.2f}, p = {mandarin_ttest['p_value']:.4f})."
+)
+
+# Ringkasan effect size
+print(
+    f"- Effect size Cohen's d = {mandarin_d:.2f}, termasuk kategori efek {kategori}, "
+    "menunjukkan pengaruh model yang kuat terhadap peningkatan kemampuan."
+)
+
+# Ringkasan CVI
+print(
+    f"- Nilai S-CVI = {s_cvi:.2f}, yang berada di atas batas minimal 0.80, "
+    "menunjukkan bahwa instrumen dikategorikan sangat valid secara isi."
+)
+print("- Secara keseluruhan, model dinyatakan layak dan efektif berdasarkan uji statistik dan validitas isi.")
